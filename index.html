@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barmods X Tunnel - Premium Panel</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* RESET & GLOBAL */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            /* Latar belakang diset Cover agar pas di layar */
+            background-image: url('https://cdn.yupra.my.id/yp/0zhfv6ka.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        /* LAYOUT UTAMA */
+        .wrapper {
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.65); /* Overlay gelap agar teks terbaca */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* KOTAK KACA (GLASSMORPHISM) */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(6, 182, 212, 0.4);
+            border-radius: 16px;
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(6, 182, 212, 0.15);
+        }
+
+        /* HEADER TEXT */
+        .header-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            text-align: center;
+            background: linear-gradient(90deg, #22d3ee, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+        .header-sub {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            color: #22d3ee;
+            font-size: 10px;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        /* TEKS MENYALA BERJALAN */
+        .marquee-box {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid rgba(255, 0, 0, 0.6);
+            border-bottom: 1px solid rgba(255, 0, 0, 0.6);
+            padding: 8px 0;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+        .marquee-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: jalan 12s linear infinite;
+            color: #ff3333;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+        }
+        @keyframes jalan {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* GRID FORM */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            color: #94a3b8;
+            margin-bottom: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: white;
+            font-size: 13px;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+            transition: 0.3s;
+        }
+        .form-control:focus {
+            border-color: #22d3ee;
+            box-shadow: 0 0 8px rgba(34, 211, 238, 0.3);
+        }
+
+        /* PROTOCOL BUTTONS */
+        .proto-container {
+            display: flex;
+            background: #0f172a;
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .proto-btn {
+            flex: 1;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            color: #64748b;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .proto-btn.active {
+            background: linear-gradient(90deg, #0891b2, #2563eb);
+            color: white;
+            box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+        }
+
+        /* TOMBOL SUBMIT */
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #0891b2, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(34, 211, 238, 0.6); }
+
+        /* KOTAK HASIL (TERMINAL) */
+        .result-box { display: none; margin-top: 25px; }
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .result-header span { color: #4ade80; font-size: 12px; font-weight: bold; }
+        .copy-btn {
+            background: #1e293b;
+            color: white;
+            border: 1px solid #334155;
+            padding: 4px 10px;
+            font-size: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .copy-btn:hover { background: #334155; }
+        
+        .terminal-area {
+            width: 100%;
+            height: 250px;
+            background: #000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 11px;
+            padding: 15px;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            resize: vertical;
+            outline: none;
+        }
+
+        /* FOOTER DEV BARMODS */
+        .footer-dev {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dev-glow {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: #22d3ee;
+            text-shadow: 0 0 5px #22d3ee, 0 0 15px #22d3ee, 0 0 25px #22d3ee;
+            letter-spacing: 3px;
+        }
+
+        /* LOADING ANIMATION */
+        .loader {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: putar 1s linear infinite;
+            display: none;
+        }
+        @keyframes putar { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="glass-panel">
+            
+            <div class="header-title">BARMODS X</div>
+            <div class="header-sub">TUNNEL SYSTEM</div>
+
+            <div class="marquee-box">
+                <div class="marquee-text">
+                    <i class="fas fa-exclamation-triangle"></i> GUNAKAN DENGAN BIJAK YAH IDIOT <i class="fas fa-exclamation-triangle"></i>
+                </div>
+            </div>
+
+            <form id="createForm">
+                
+                <div class="form-group" style="text-align: center;">
+                    <label>Pilih Protokol</label>
+                    <div class="proto-container">
+                        <button type="button" class="proto-btn active" id="btn-ssh" onclick="setProtocol('ssh')">SSH</button>
+                        <button type="button" class="proto-btn" id="btn-vmess" onclick="setProtocol('vmess')">VMESS</button>
+                        <button type="button" class="proto-btn" id="btn-vless" onclick="setProtocol('vless')">VLESS</button>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="username" class="form-control" placeholder="barmods" required>
+                    </div>
+                    <div class="form-group" id="passwordWrapper">
+                        <label>Password</label>
+                        <input type="text" id="password" class="form-control" placeholder="12345">
+                    </div>
+                </div>
+
+                <div class="grid-3">
+                    <div class="form-group">
+                        <label style="text-align: center;">Hari</label>
+                        <input type="number" id="days" class="form-control" value="30" style="text-align: center;" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label style="text-align: center;">Kuota</label>
+                        <input type="text" id="quota" class="form-control" value="Unlimited" style="text-align: center;">
+                    </div>
+                    <div class="form-group">
+                        <label style="text-align: center; color: #22d3ee;">Limit IP</label>
+                        <input type="number" id="ipLimit" class="form-control" value="1" readonly style="background: #000; color: #22d3ee; font-weight: bold; text-align: center;">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span id="btnText"><i class="fas fa-bolt"></i> Buat Akun</span>
+                    <div id="btnLoader" class="loader"></div>
+                </button>
+            </form>
+
+            <div class="result-box" id="resultBox">
+                <div class="result-header">
+                    <span><i class="fas fa-terminal"></i> Output Terminal</span>
+                    <button class="copy-btn" onclick="copyResult()"><i class="fas fa-copy"></i> Salin Teks</button>
+                </div>
+                <textarea id="resultText" class="terminal-area" readonly></textarea>
+            </div>
+
+            <div class="footer-dev">
+                <div style="font-size: 9px; color: #64748b; letter-spacing: 2px; margin-bottom: 5px;">DEVELOPED BY</div>
+                <div class="dev-glow">DEV BARMODS</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let selectedProtocol = 'ssh';
+
+        function setProtocol(protocol) {
+            selectedProtocol = protocol;
+            const btns = ['ssh', 'vmess', 'vless'];
+            
+            btns.forEach(p => {
+                const btn = document.getElementById(`btn-${p}`);
+                if (p === protocol) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            const passWrapper = document.getElementById('passwordWrapper');
+            const passInput = document.getElementById('password');
+            if(protocol === 'vmess' || protocol === 'vless') {
+                passWrapper.style.opacity = '0.3';
+                passInput.disabled = true;
+            } else {
+                passWrapper.style.opacity = '1';
+                passInput.disabled = false;
+            }
+        }
+
+        document.getElementById('createForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const btnText = document.getElementById('btnText');
+            const btnLoader = document.getElementById('btnLoader');
+            const resultBox = document.getElementById('resultBox');
+            const submitBtn = document.getElementById('submitBtn');
+
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'block';
+            submitBtn.disabled = true;
+            resultBox.style.display = 'none';
+
+            const payload = {
+                protocol: selectedProtocol,
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value || "1",
+                expired_days: parseInt(document.getElementById('days').value),
+                quota: document.getElementById('quota').value || "Unlimited",
+                ip_limit: 1 
+            };
+
+            try {
+                // Fetch ke API Vercel Serverless
+                const response = await fetch('/api/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status === 'success') {
+                    document.getElementById('resultText').value = data.data.config_text;
+                    resultBox.style.display = 'block';
+                    resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    alert("Error Server: " + (data.message || "Gagal membuat akun"));
+                }
+            } catch (error) {
+                alert("Gagal terhubung: Pastikan kamu sudah mendeploy ini ke Vercel agar koneksi API berjalan.");
+            } finally {
+                btnText.style.display = 'inline-block';
+                btnLoader.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        });
+
+        function copyResult() {
+            const copyText = document.getElementById("resultText");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            alert("Berhasil disalin bos!");
+        }
+    </script>
+</body>
+</html>
