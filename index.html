@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barmods X Tunnel - Premium Panel</title>
     
+    <!-- Ikon dan Font -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
@@ -14,235 +15,150 @@
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #0f172a;
-            /* Latar belakang diset Cover agar pas di layar */
             background-image: url('https://cdn.yupra.my.id/yp/0zhfv6ka.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: white;
+            overflow-x: hidden;
         }
+
+        /* LOADING INTRO SCREEN */
+        #introScreen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        #introVideo {
+            width: 100%; max-width: 400px; border-radius: 15px;
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+            border: 2px solid #06b6d4;
+        }
+        .btn-masuk {
+            margin-top: 20px; padding: 12px 30px; font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(90deg, #ff0055, #ff0000); color: white;
+            border: none; border-radius: 30px; font-weight: bold; font-size: 16px;
+            cursor: pointer; box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            animation: pulse 1.5s infinite; display: none;
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
         /* LAYOUT UTAMA */
         .wrapper {
-            min-height: 100vh;
-            background: rgba(0, 0, 0, 0.65); /* Overlay gelap agar teks terbaca */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            min-height: 100vh; background: rgba(0, 0, 0, 0.7);
+            display: flex; align-items: center; justify-content: center; padding: 20px;
         }
 
         /* KOTAK KACA (GLASSMORPHISM) */
         .glass-panel {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(6, 182, 212, 0.4);
-            border-radius: 16px;
-            padding: 30px;
-            width: 100%;
-            max-width: 450px;
+            background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(6, 182, 212, 0.4); border-radius: 16px;
+            padding: 30px; width: 100%; max-width: 450px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(6, 182, 212, 0.15);
         }
 
         /* HEADER TEXT */
         .header-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            text-align: center;
-            background: linear-gradient(90deg, #22d3ee, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif; font-size: 28px; font-weight: 800; text-align: center;
+            background: linear-gradient(90deg, #22d3ee, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px;
         }
-        .header-sub {
-            text-align: center;
-            font-family: 'Orbitron', sans-serif;
-            color: #22d3ee;
-            font-size: 10px;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
+        .header-sub { text-align: center; font-family: 'Orbitron', sans-serif; color: #22d3ee; font-size: 10px; letter-spacing: 4px; margin-bottom: 20px; }
+
+        /* KONTRIBUTOR & WA */
+        .contact-wa {
+            display: flex; justify-content: center; align-items: center; margin-bottom: 20px;
         }
+        .wa-btn {
+            background: #25D366; color: white; text-decoration: none; padding: 8px 15px;
+            border-radius: 20px; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 8px;
+            box-shadow: 0 0 10px rgba(37, 211, 102, 0.4); transition: 0.3s;
+        }
+        .wa-btn:hover { background: #128C7E; transform: scale(1.05); }
 
         /* TEKS MENYALA BERJALAN */
         .marquee-box {
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            background: rgba(0, 0, 0, 0.6);
-            border-top: 1px solid rgba(255, 0, 0, 0.6);
-            border-bottom: 1px solid rgba(255, 0, 0, 0.6);
-            padding: 8px 0;
-            border-radius: 5px;
-            margin-bottom: 25px;
+            width: 100%; overflow: hidden; white-space: nowrap; background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid rgba(255, 0, 0, 0.6); border-bottom: 1px solid rgba(255, 0, 0, 0.6);
+            padding: 8px 0; border-radius: 5px; margin-bottom: 25px;
         }
         .marquee-text {
-            display: inline-block;
-            padding-left: 100%;
-            animation: jalan 12s linear infinite;
-            color: #ff3333;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+            display: inline-block; padding-left: 100%; animation: jalan 12s linear infinite;
+            color: #ff3333; font-family: 'Orbitron', sans-serif; font-size: 13px; font-weight: 700;
+            letter-spacing: 2px; text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
         }
-        @keyframes jalan {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
+        @keyframes jalan { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
         /* GRID FORM */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 15px; }
         
-        .form-group label {
-            display: block;
-            font-size: 11px;
-            color: #94a3b8;
-            margin-bottom: 6px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .form-group label { display: block; font-size: 11px; color: #94a3b8; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .form-control {
-            width: 100%;
-            padding: 10px 15px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid #334155;
-            border-radius: 8px;
-            color: white;
-            font-size: 13px;
-            font-family: 'Poppins', sans-serif;
-            outline: none;
-            transition: 0.3s;
+            width: 100%; padding: 10px 15px; background: rgba(0, 0, 0, 0.5); border: 1px solid #334155;
+            border-radius: 8px; color: white; font-size: 13px; font-family: 'Poppins', sans-serif; outline: none; transition: 0.3s;
         }
-        .form-control:focus {
-            border-color: #22d3ee;
-            box-shadow: 0 0 8px rgba(34, 211, 238, 0.3);
+        .form-control:focus { border-color: #22d3ee; box-shadow: 0 0 8px rgba(34, 211, 238, 0.3); }
+
+        /* FITUR BYPASS (NEW) */
+        .bypass-box {
+            background: rgba(34, 211, 238, 0.05); border: 1px dashed rgba(34, 211, 238, 0.5);
+            padding: 15px; border-radius: 8px; margin-bottom: 15px;
         }
+        .bypass-title { font-size: 11px; color: #22d3ee; font-weight: bold; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
 
         /* PROTOCOL BUTTONS */
-        .proto-container {
-            display: flex;
-            background: #0f172a;
-            border: 1px solid rgba(34, 211, 238, 0.3);
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        .proto-btn {
-            flex: 1;
-            padding: 10px;
-            background: transparent;
-            border: none;
-            color: #64748b;
-            font-size: 13px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .proto-btn.active {
-            background: linear-gradient(90deg, #0891b2, #2563eb);
-            color: white;
-            box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
-        }
+        .proto-container { display: flex; background: #0f172a; border: 1px solid rgba(34, 211, 238, 0.3); border-radius: 8px; overflow: hidden; margin-bottom: 20px; }
+        .proto-btn { flex: 1; padding: 10px; background: transparent; border: none; color: #64748b; font-size: 13px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .proto-btn.active { background: linear-gradient(90deg, #0891b2, #2563eb); color: white; box-shadow: 0 0 10px rgba(34, 211, 238, 0.5); }
 
         /* TOMBOL SUBMIT */
         .submit-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(90deg, #0891b2, #2563eb);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
-            transition: 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px;
+            width: 100%; padding: 14px; background: linear-gradient(90deg, #0891b2, #2563eb); color: white;
+            border: none; border-radius: 8px; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); transition: 0.3s; display: flex; justify-content: center; align-items: center; margin-top: 10px;
         }
         .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(34, 211, 238, 0.6); }
 
-        /* KOTAK HASIL (TERMINAL) */
+        /* KOTAK HASIL */
         .result-box { display: none; margin-top: 25px; }
-        .result-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
+        .result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
         .result-header span { color: #4ade80; font-size: 12px; font-weight: bold; }
-        .copy-btn {
-            background: #1e293b;
-            color: white;
-            border: 1px solid #334155;
-            padding: 4px 10px;
-            font-size: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+        .copy-btn { background: #1e293b; color: white; border: 1px solid #334155; padding: 4px 10px; font-size: 10px; border-radius: 4px; cursor: pointer; transition: 0.3s; }
         .copy-btn:hover { background: #334155; }
-        
-        .terminal-area {
-            width: 100%;
-            height: 250px;
-            background: #000;
-            color: #00ff00;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 11px;
-            padding: 15px;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            resize: vertical;
-            outline: none;
-        }
+        .terminal-area { width: 100%; height: 250px; background: #000; color: #00ff00; font-family: 'Courier New', Courier, monospace; font-size: 11px; padding: 15px; border: 1px solid #334155; border-radius: 8px; resize: vertical; outline: none; }
 
-        /* FOOTER DEV BARMODS */
-        .footer-dev {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .dev-glow {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 18px;
-            font-weight: 900;
-            color: #22d3ee;
-            text-shadow: 0 0 5px #22d3ee, 0 0 15px #22d3ee, 0 0 25px #22d3ee;
-            letter-spacing: 3px;
-        }
-
-        /* LOADING ANIMATION */
-        .loader {
-            border: 3px solid rgba(255,255,255,0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: putar 1s linear infinite;
-            display: none;
-        }
+        .loader { border: 3px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; width: 20px; height: 20px; animation: putar 1s linear infinite; display: none; }
         @keyframes putar { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
+        .footer-dev { text-align: center; margin-top: 30px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .dev-glow { font-family: 'Orbitron', sans-serif; font-size: 18px; font-weight: 900; color: #22d3ee; text-shadow: 0 0 5px #22d3ee, 0 0 15px #22d3ee, 0 0 25px #22d3ee; letter-spacing: 3px; }
     </style>
 </head>
 <body>
 
+    <!-- AUDIO PLAYER -->
+    <audio id="bgAudio" src="https://c.termai.cc/a133/YnyIJ.mp3" loop></audio>
+
+    <!-- LOADING SCREEN VIDEO -->
+    <div id="introScreen">
+        <video id="introVideo" src="https://c.termai.cc/v193/WpOq7.mp4" autoplay muted playsinline></video>
+        <button id="btnMasuk" class="btn-masuk">MASUK PANEL</button>
+    </div>
+
+    <!-- MAIN DASHBOARD -->
     <div class="wrapper">
         <div class="glass-panel">
             
             <div class="header-title">BARMODS X</div>
             <div class="header-sub">TUNNEL SYSTEM</div>
+
+            <!-- Kontak WA Dev -->
+            <div class="contact-wa">
+                <a href="https://wa.me/6283877842721" target="_blank" class="wa-btn">
+                    <i class="fab fa-whatsapp"></i> Chat Dev Barmods
+                </a>
+            </div>
 
             <div class="marquee-box">
                 <div class="marquee-text">
@@ -258,6 +174,19 @@
                         <button type="button" class="proto-btn active" id="btn-ssh" onclick="setProtocol('ssh')">SSH</button>
                         <button type="button" class="proto-btn" id="btn-vmess" onclick="setProtocol('vmess')">VMESS</button>
                         <button type="button" class="proto-btn" id="btn-vless" onclick="setProtocol('vless')">VLESS</button>
+                    </div>
+                </div>
+
+                <!-- MENU BYPASS KUOTA -->
+                <div class="bypass-box">
+                    <div class="bypass-title"><i class="fas fa-fire"></i> MULTI BYPASS FITUR</div>
+                    <div class="form-group">
+                        <label>Bug / SNI Host</label>
+                        <input type="text" id="bugHost" class="form-control" placeholder="m.youtube.com (Kosongkan jika default)">
+                    </div>
+                    <div class="form-group" id="payloadWrapper" style="margin-top: 10px;">
+                        <label>Custom Payload (Khusus SSH)</label>
+                        <input type="text" id="customPayload" class="form-control" placeholder="GET / HTTP/1.1[crlf]Host: [bug][crlf]...">
                     </div>
                 </div>
 
@@ -283,7 +212,8 @@
                     </div>
                     <div class="form-group">
                         <label style="text-align: center; color: #22d3ee;">Limit IP</label>
-                        <input type="number" id="ipLimit" class="form-control" value="1" readonly style="background: #000; color: #22d3ee; font-weight: bold; text-align: center;">
+                        <!-- LIMIT IP TERKUNCI DI 2 SESUAI REQUEST -->
+                        <input type="number" id="ipLimit" class="form-control" value="2" readonly style="background: #000; color: #22d3ee; font-weight: bold; text-align: center;">
                     </div>
                 </div>
 
@@ -295,7 +225,7 @@
 
             <div class="result-box" id="resultBox">
                 <div class="result-header">
-                    <span><i class="fas fa-terminal"></i> Output Terminal</span>
+                    <span><i class="fas fa-terminal"></i> Output Config</span>
                     <button class="copy-btn" onclick="copyResult()"><i class="fas fa-copy"></i> Salin Teks</button>
                 </div>
                 <textarea id="resultText" class="terminal-area" readonly></textarea>
@@ -310,6 +240,25 @@
     </div>
 
     <script>
+        // LOGIKA LOADING SCREEN & AUDIO
+        const introVideo = document.getElementById('introVideo');
+        const btnMasuk = document.getElementById('btnMasuk');
+        const introScreen = document.getElementById('introScreen');
+        const bgAudio = document.getElementById('bgAudio');
+
+        // Munculkan tombol saat video selesai
+        introVideo.onended = () => { btnMasuk.style.display = 'block'; };
+        // Fallback jika video gagal load/lama
+        setTimeout(() => { btnMasuk.style.display = 'block'; }, 4000);
+
+        btnMasuk.addEventListener('click', () => {
+            introScreen.style.opacity = '0';
+            setTimeout(() => { introScreen.style.display = 'none'; }, 500);
+            bgAudio.volume = 0.5; // Atur volume (0.0 sampai 1.0)
+            bgAudio.play().catch(e => console.log("Auto-play ditolak browser"));
+        });
+
+        // LOGIKA PROTOCOL
         let selectedProtocol = 'ssh';
 
         function setProtocol(protocol) {
@@ -318,24 +267,25 @@
             
             btns.forEach(p => {
                 const btn = document.getElementById(`btn-${p}`);
-                if (p === protocol) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+                if (p === protocol) btn.classList.add('active');
+                else btn.classList.remove('active');
             });
 
+            // Atur input khusus berdasarkan protokol
             const passWrapper = document.getElementById('passwordWrapper');
             const passInput = document.getElementById('password');
+            const payloadWrapper = document.getElementById('payloadWrapper');
+
             if(protocol === 'vmess' || protocol === 'vless') {
-                passWrapper.style.opacity = '0.3';
-                passInput.disabled = true;
+                passWrapper.style.opacity = '0.3'; passInput.disabled = true;
+                payloadWrapper.style.display = 'none'; // Sembunyikan Payload di vmess/vless
             } else {
-                passWrapper.style.opacity = '1';
-                passInput.disabled = false;
+                passWrapper.style.opacity = '1'; passInput.disabled = false;
+                payloadWrapper.style.display = 'block'; // Tampilkan Payload di SSH
             }
         }
 
+        // LOGIKA SUBMIT API & INJECT BYPASS BUG
         document.getElementById('createForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -344,42 +294,76 @@
             const resultBox = document.getElementById('resultBox');
             const submitBtn = document.getElementById('submitBtn');
 
-            btnText.style.display = 'none';
-            btnLoader.style.display = 'block';
-            submitBtn.disabled = true;
-            resultBox.style.display = 'none';
+            btnText.style.display = 'none'; btnLoader.style.display = 'block';
+            submitBtn.disabled = true; resultBox.style.display = 'none';
 
-            const payload = {
+            const payloadData = {
                 protocol: selectedProtocol,
                 username: document.getElementById('username').value,
                 password: document.getElementById('password').value || "1",
                 expired_days: parseInt(document.getElementById('days').value),
                 quota: document.getElementById('quota').value || "Unlimited",
-                ip_limit: 1 
+                ip_limit: 2 // LIMIT IP TETAP 2
             };
+
+            const inputBug = document.getElementById('bugHost').value.trim();
+            const inputPayload = document.getElementById('customPayload').value.trim();
 
             try {
                 // Fetch ke API Vercel Serverless
                 const response = await fetch('/api/create', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify(payloadData)
                 });
 
                 const data = await response.json();
 
                 if (response.ok && data.status === 'success') {
-                    document.getElementById('resultText').value = data.data.config_text;
+                    let textHasil = data.data.config_text;
+
+                    // 🛠️ PROSES INJECT BUG / PAYLOAD KE DALAM TEKS OUTPUT 🛠️
+                    
+                    if (selectedProtocol === 'ssh') {
+                        if (inputBug) {
+                            textHasil = textHasil.replace(/(SSH WEBSOCKET\s+:\s+)([^:]+)(.*)/g, `$1${inputBug}$3`);
+                            textHasil = textHasil.replace(/(SSH SSL\s+:\s+)([^:]+)(.*)/g, `$1${inputBug}$3`);
+                        }
+                        if (inputPayload) {
+                            textHasil = textHasil.replace(/Payload WSS\s+:\s+.*/g, `Payload WSS      : ${inputPayload}`);
+                        }
+                    } 
+                    else if (selectedProtocol === 'vmess' && inputBug) {
+                        // Bongkar link vmess base64, tanam bug, lalu bungkus lagi
+                        textHasil = textHasil.replace(/vmess:\/\/(.*)/g, (match, base64Str) => {
+                            try {
+                                let vmessObj = JSON.parse(atob(base64Str));
+                                vmessObj.add = inputBug;
+                                vmessObj.host = inputBug;
+                                vmessObj.sni = inputBug;
+                                return "vmess://" + btoa(JSON.stringify(vmessObj));
+                            } catch(err) { return match; }
+                        });
+                    }
+                    else if (selectedProtocol === 'vless' && inputBug) {
+                        // Ganti Host dan SNI di link vless
+                        textHasil = textHasil.replace(/vless:\/\/([^@]+)@([^:]+)(:\d+\?.*)/g, (match, uuid, oldDomain, rest) => {
+                            let newRest = rest.replace(/sni=[^&#]*/g, 'sni=' + inputBug).replace(/host=[^&#]*/g, 'host=' + inputBug);
+                            return `vless://${uuid}@${inputBug}${newRest}`;
+                        });
+                    }
+
+                    // Tampilkan Hasil
+                    document.getElementById('resultText').value = textHasil;
                     resultBox.style.display = 'block';
                     resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 } else {
                     alert("Error Server: " + (data.message || "Gagal membuat akun"));
                 }
             } catch (error) {
-                alert("Gagal terhubung: Pastikan kamu sudah mendeploy ini ke Vercel agar koneksi API berjalan.");
+                alert("Gagal terhubung ke API. Pastikan Vercel & VPS Online.");
             } finally {
-                btnText.style.display = 'inline-block';
-                btnLoader.style.display = 'none';
+                btnText.style.display = 'inline-block'; btnLoader.style.display = 'none';
                 submitBtn.disabled = false;
             }
         });
